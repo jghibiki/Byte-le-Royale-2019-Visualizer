@@ -27,6 +27,11 @@ ModelImporter:
     400020: Weapon_Bank_001
     2100000: unnamed
     2100002: Material
+    2100004: Material_001
+    2100006: Airlock_Material
+    2100008: Observatory_Material
+    2100010: Residential_Material
+    2100012: Smoke_Stack_Material
     2300000: Airlock
     2300002: Asteroid
     2300004: Observatory
@@ -59,7 +64,27 @@ ModelImporter:
     4300018: Support_3
     7400000: Default Take
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Airlock_Material
+    second: {fileID: 2100000, guid: 2b0c5cb335744cd4585d65b8fcbcbb23, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Observatory_Material
+    second: {fileID: 2100000, guid: 1b325f0c44812cf44bd7da59751bcd18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Residential_Material
+    second: {fileID: 2100000, guid: 56ad5e37244f4bf41a63461983b9acfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Smoke_Stack_Material
+    second: {fileID: 2100000, guid: 86f9a407f487555479f84d1a772d2c93, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
