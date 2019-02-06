@@ -127,4 +127,12 @@ public class RawEntities
             return new Dictionary<string, int>();
         }
     }
+
+    public class AttackEvent
+    {
+        public int type;
+        public string attacker;
+        public string target;
+        public int damage;
+    }
 }

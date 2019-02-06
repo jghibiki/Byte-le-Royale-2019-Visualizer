@@ -14,7 +14,7 @@ public class OrthoCameraController : MonoBehaviour
     private float X;
     private float Y;
 
-    public float scrollSpeed = 20f;
+    public float scrollSpeed = 10f;
 
     private float maxCameraHeight;
     private Vector3 defaultCamPos;
@@ -30,6 +30,9 @@ public class OrthoCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (!gameObject.activeInHierarchy) return;
+
         Vector3 pos = transform.position;
         var percentScroll = pos.y / maxCameraHeight;
 
@@ -82,6 +85,9 @@ public class OrthoCameraController : MonoBehaviour
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         transform.Translate(Vector3.up * scroll * scrollSpeed * 100f * Time.deltaTime, Space.World);
+        var verticalPos = transform.position;
+        verticalPos.y = Mathf.Clamp(verticalPos.y, 0, maxCameraHeight);
+        transform.position = verticalPos;
 
         pos = transform.position;
         pos.x = Mathf.Clamp(pos.x, -panLimit.x, 1000+panLimit.x);

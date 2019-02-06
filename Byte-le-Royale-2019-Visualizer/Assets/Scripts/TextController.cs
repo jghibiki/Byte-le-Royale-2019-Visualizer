@@ -29,22 +29,25 @@ public class TextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textContainer.transform.LookAt(textContainer.transform.position + Camera.main.transform.rotation * Vector3.forward,
-            Camera.main.transform.rotation*Vector3.up);
+        if (Camera.allCamerasCount == 0) return;
+        var currentCamera = Camera.allCameras[0];
+        textContainer.transform.LookAt(textContainer.transform.position + currentCamera.transform.rotation * Vector3.forward,
+            currentCamera.transform.rotation*Vector3.up);
 
-
-        var percentZoom = Camera.main.transform.gameObject.GetComponent<OrthoCameraController>().GetPercentZoom();
-        int size = Mathf.FloorToInt(Mathf.Lerp(maxTextSize, minTextSize, percentZoom));
+        var orthoCamController = currentCamera.transform.gameObject.GetComponent<OrthoCameraController>();
+        
+        var percentZoom = orthoCamController == null ? 0 : orthoCamController.GetPercentZoom();
+        int size = Mathf.FloorToInt(Mathf.Lerp(minTextSize, maxTextSize, percentZoom));
         GetComponent<TextMesh>().fontSize = size;
-        //CenterText();
+        CenterText();
 
     }
 
     void CenterText()
     {
-        var width = GetComponent<MeshRenderer>().bounds.size.x;
+        var size = GetComponent<MeshRenderer>().bounds.size;
         var current_position = transform.position;
-        current_position.x += width / 2f;
+        current_position = textContainer.transform.parent.position - size / 2f;
         transform.position = current_position;
     }
 }

@@ -22,6 +22,7 @@ public class GameLoader : MonoBehaviour
     public GameObject black_market_station_model;
     public GameObject secure_station_model;
     public GameObject ship_model;
+    public List<GameObject> billboards;
 
     List<Station> stations = new List<Station>();
     AsteroidField cuprite_field;
@@ -38,12 +39,19 @@ public class GameLoader : MonoBehaviour
     private int tick = 1;
     private int intermediate = int.MaxValue;
     private int smoothing = 5;
+    public int maxSmoothing = 25;
 
+    private bool pause = false;
+
+    public Camera perspectiveCam;
+    public Camera topDownCam;
+    public Camera currentCamera;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        currentCamera = perspectiveCam;
         LoadGameData();
         LoadManifest();
     }
@@ -51,6 +59,79 @@ public class GameLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(Input.GetKey(KeyCode.LeftControl)  && Input.GetMouseButtonDown(0))
+        {
+            //ray cast to hit ship
+            Ray ray =currentCamera.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(ray.origin, -ray.direction, Color.blue);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit, 2000f))
+            {
+                Debug.Log("hit");
+                GameObject ship = null;
+                foreach(var ship_obj in ship_objects)
+                {
+                    Debug.Log(hit.transform.parent.gameObject.name);
+                    if(ship_obj.transform == hit.transform.parent)
+                    {
+                        ship = ship_obj;
+                        break;
+                    }
+                }
+                if(ship != null)
+                {
+                    // set ship camera to active camera
+                    var shipCam = ship.transform.Find("TrailingCamera");
+
+                    currentCamera.gameObject.tag = "Untagged";
+                    currentCamera.enabled = false;
+
+                    shipCam.gameObject.tag = "MyCurrentCamera";
+                    currentCamera = shipCam.gameObject.GetComponent<Camera>();
+                    currentCamera.enabled = true;
+                    perspectiveCam.GetComponent<OrthoCameraController>().enabled = false;
+                }
+            }
+        }
+
+        if (Input.GetKeyUp("[+]"))
+        {
+
+            currentCamera.gameObject.tag = "Untagged";
+            currentCamera.enabled = false;
+
+            perspectiveCam.gameObject.tag = "MyCurrentCamera";
+            perspectiveCam.enabled = true;
+            currentCamera = perspectiveCam;
+            perspectiveCam.GetComponent<OrthoCameraController>().enabled = true;
+        }
+
+        if (Input.GetKeyUp("[-]"))
+        {
+
+            currentCamera.gameObject.tag = "Untagged";
+            currentCamera.enabled = false;
+
+            currentCamera = topDownCam;
+            currentCamera.enabled = true;
+            currentCamera.gameObject.tag = "MyCurrentCamera";
+            perspectiveCam.GetComponent<OrthoCameraController>().enabled = false;
+
+            Debug.Log(currentCamera.tag);
+        }
+
+        if (Input.GetKeyUp("p"))
+        {
+            pause = !pause;
+        }
+
+        // Do things that can be done while paused
+
+
+
+        if (pause) return; // things that can't be done while paused.
+
 
         if (intermediate > smoothing){
 
@@ -78,6 +159,8 @@ public class GameLoader : MonoBehaviour
                         ship.gameObject = ship_game_object;
                         ship_objects.Add(ship_game_object);
 
+                        
+
                     }
                     else
                     {
@@ -91,6 +174,29 @@ public class GameLoader : MonoBehaviour
                     }
                 }
 
+                foreach(JToken item in GetEventOfType(json_parser["turn_result"], 5))
+                {
+                    var e = item.ToObject<AttackEvent>();
+                    GameObject attacker = null;
+                    GameObject target = null;
+
+                    foreach (var ship in ships)
+                    {
+                        if (ship.id == e.attacker)
+                        {
+                            attacker = ship.gameObject;
+                        }
+                        if (ship.id == e.target)
+                        {
+                            target = ship.gameObject;
+                        }
+
+                        if(attacker != null && target != null) break;
+                    }
+
+                    attacker.GetComponent<ShipController>().Attack(target);
+                }
+
 
 
             }
@@ -101,7 +207,6 @@ public class GameLoader : MonoBehaviour
 
             foreach (Ship ship in ships)
             {
-                Debug.Log(ship.team_name);
                 ship
                     .gameObject
                     .GetComponent<ShipController>()
@@ -114,12 +219,12 @@ public class GameLoader : MonoBehaviour
         if (Input.GetKeyUp("up"))
         {
             smoothing -= 3;
-            smoothing = Mathf.Clamp(smoothing, 1, 15);
+            smoothing = Mathf.Clamp(smoothing, 1, maxSmoothing);
         }
         if (Input.GetKeyUp("down"))
         {
             smoothing += 3;
-            smoothing = Mathf.Clamp(smoothing, 1, 15);
+            smoothing = Mathf.Clamp(smoothing, 1, maxSmoothing);
         }
 
     }
@@ -127,6 +232,11 @@ public class GameLoader : MonoBehaviour
     IEnumerable<JToken>  GetObjectsOfType(JToken json_parser, int object_type)
     {
         return json_parser["universe"].SelectTokens($"$[?(@.object_type =={object_type})]");  
+    }
+
+    IEnumerable<JToken> GetEventOfType(JToken json_parser, int event_type)
+    {
+        return json_parser["events"].SelectTokens($"$[?(@.type == {event_type})]");
     }
 
 
@@ -149,7 +259,7 @@ public class GameLoader : MonoBehaviour
         // Parse manifest
         string json = File.ReadAllText(@"../game_log/manifest.json");
         var json_parser = JObject.Parse(json);
-        manifest = json_parser.ToObject<Manifest>();
+        this.manifest = json_parser.ToObject<Manifest>();
     }
 
     void LoadGameData()
@@ -161,25 +271,43 @@ public class GameLoader : MonoBehaviour
         foreach (Station station in LoadType<Station>(json_parser, 1))
         {
             var station_pos = new Vector3((float)station.position[0], 0f, world_height - (float)station.position[1]);
-            var station_game_object = Instantiate(station_model, station_pos, Quaternion.identity);
+            var tilt_x = Random.Range(-80, -100);
+            var tilt_y = Random.Range(0, 360);
+            var station_game_object = Instantiate(station_model, station_pos, Quaternion.Euler(new Vector3(tilt_x, tilt_y, 0f)));
             station_game_object.name = station.name;
             station_objects.Add(station_game_object);
+
+            // load billboard
+            var raw_station_name = station_game_object.name.Split(' ')[0];
+            foreach (GameObject obj in billboards)
+            {
+                var raw_name = obj.name.Split(' ')[0];
+                if (raw_name == raw_station_name)
+                {
+                    var offset = station_game_object.transform.position + new Vector3(8, 10, 0);
+                    var new_billboard = Instantiate(obj, offset, Quaternion.identity);
+
+                    var offset2 = station_game_object.transform.position + new Vector3(-8, 10, 0);
+                    var new_billboard_2 = Instantiate(obj, offset2, Quaternion.identity);
+                }
+            }
         }
 
         //load black market stations
         foreach (Station station in LoadType<Station>(json_parser, 2))
         {
             var station_pos = new Vector3((float)station.position[0], 0f, world_height - (float)station.position[1]);
-            var station_game_object = Instantiate(station_model, station_pos, Quaternion.identity);
+            var station_game_object = Instantiate(black_market_station_model, station_pos, Quaternion.identity);
             station_game_object.name = station.name;
             station_objects.Add(station_game_object);
+
         }
 
         // load secure station
         foreach (Station station in LoadType<Station>(json_parser, 3))
         {
             var station_pos = new Vector3((float)station.position[0], 0f, world_height - (float)station.position[1]);
-            var station_game_object = Instantiate(station_model, station_pos, Quaternion.identity);
+            var station_game_object = Instantiate(station_model, station_pos, Quaternion.Euler(new Vector3(90f, 0f, 0f)));
             station_game_object.name = station.name;
             station_objects.Add(station_game_object);
         }
@@ -211,7 +339,9 @@ public class GameLoader : MonoBehaviour
             ship_game_object.name = ship.team_name;
             ship.gameObject = ship_game_object;
             ship_objects.Add(ship_game_object);
+            ship_game_object.GetComponent<ShipController>().UpdateFromLog(ship, 1);
         }
     }
+
 
 }

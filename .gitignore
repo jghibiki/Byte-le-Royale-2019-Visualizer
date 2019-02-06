@@ -34,3 +34,8 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+game_log/
+game_data.json
+test
+test_Data/
