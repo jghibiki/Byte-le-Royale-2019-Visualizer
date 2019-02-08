@@ -85,7 +85,7 @@ public class OrthoCameraController : MonoBehaviour
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)){
-            transform.Translate(Vector3.up * scroll * scrollSpeed *3f * 100f * Time.deltaTime, Space.World);
+            transform.Translate(Vector3.up * scroll * scrollSpeed *0.25f * 100f * Time.deltaTime, Space.World);
         }
         else
         {
