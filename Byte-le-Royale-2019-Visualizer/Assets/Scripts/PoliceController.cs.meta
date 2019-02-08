@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 45f906e1460d19d46abe614f1ee1a31d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - LaserBlast: {fileID: 5448435321604532839, guid: e0bfefd9a0640d15398e3ccfa9ac29d8,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

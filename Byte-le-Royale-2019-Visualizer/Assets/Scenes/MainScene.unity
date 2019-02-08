@@ -421,7 +421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145776337}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -205.67932, y: 0, z: 278}
+  m_LocalPosition: {x: -341, y: 0, z: 167}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 985656003}
@@ -791,7 +791,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0.2924528, g: 0.22809924, b: 0.09794411, a: 1}
-  m_Intensity: 0.36
+  m_Intensity: 0.87
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -929,7 +929,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.754717, g: 0.49887913, b: 0.1459594, a: 1}
-  m_Intensity: 5
+  m_Intensity: 0
   m_Range: 695.4
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1038,7 +1038,7 @@ GameObject:
   - component: {fileID: 867218510}
   m_Layer: 0
   m_Name: TopDownCamera
-  m_TagString: Untagged
+  m_TagString: MyCurrentCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1058,7 +1058,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867218509}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
@@ -1326,9 +1326,11 @@ MonoBehaviour:
     type: 3}
   black_market_station_model: {fileID: 2659822231773916172, guid: e1ba330274dfea24e8e4cda9e1b7f3b3,
     type: 3}
-  secure_station_model: {fileID: 2659822231773916172, guid: e1ba330274dfea24e8e4cda9e1b7f3b3,
+  secure_station_model: {fileID: 7910070858631195023, guid: ee4ba231e023fa34888cde8f626d0745,
     type: 3}
   ship_model: {fileID: 5119249, guid: 3687f51f9d9f81645b18c44475b5b96c, type: 3}
+  police_model: {fileID: 184308989473105418, guid: 97268352beb237e4ea76ed1c48348084,
+    type: 3}
   billboards:
   - {fileID: 6644068618155248799, guid: a82ee1c3a8bae6e4a8bda86163862780, type: 3}
   - {fileID: 7356829419521880809, guid: 6a18229096ddc834cacc8897a77994f0, type: 3}
@@ -1343,6 +1345,8 @@ MonoBehaviour:
   - {fileID: 2704861188552568615, guid: a4b9c1b43f0480c4db13977196ca39bf, type: 3}
   - {fileID: 5211624015958903055, guid: 67a2176f5c1531f4197b716c6cad7f82, type: 3}
   - {fileID: 2846317698305583323, guid: f84622e918f05444da18b36c28af402d, type: 3}
+  illegal_salvage_model: {fileID: 5535786, guid: 1d1b8cbe99294b44b927cdd420c67e68,
+    type: 3}
   maxSmoothing: 25
   perspectiveCam: {fileID: 1968308641}
   topDownCam: {fileID: 867218511}
@@ -1679,7 +1683,7 @@ GameObject:
   - component: {fileID: 1968308639}
   m_Layer: 0
   m_Name: AngledPerspectiveCamera
-  m_TagString: MyCurrentCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1717,7 +1721,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968308638}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}

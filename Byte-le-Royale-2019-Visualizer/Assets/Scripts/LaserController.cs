@@ -8,7 +8,8 @@ public class LaserController : MonoBehaviour
 
     private Vector3 emissionLocation = new Vector3(0, 0, 0);
     private Vector3 impactLocation = new Vector3(-1, -1, -1);
-    private GameObject target = null;
+    private Vector3 target;
+    private GameObject targetShip = null;
     private Transform laser;
 
     // Start is called before the first frame update
@@ -23,28 +24,36 @@ public class LaserController : MonoBehaviour
         
     }
 
-    public void Emit(Vector3 _emissionLocation, GameObject _target)
+    public void Emit(Vector3 _emissionLocation, GameObject _targetShip,  Vector3 _target, bool targetDead=false)
     {
         laser = transform.Find("Laser");
 
         emissionLocation = _emissionLocation;
         target = _target;
+        targetShip = _targetShip;
 
-        RaycastHit[] hits;
-        hits = Physics.RaycastAll(new Ray(emissionLocation, (_target.transform.position - emissionLocation)));
-
-        var shipTransform = target.transform.Find("Ship").transform;
-
-        foreach (var hit in hits)
+        if (!targetDead)
         {
-            if(hit.transform == shipTransform)
-            {
-                impactLocation = hit.point;
-                break;
-            }
-        }
+            RaycastHit[] hits;
+            hits = Physics.RaycastAll(new Ray(emissionLocation, (_target - emissionLocation)));
 
-        if (impactLocation.x == -1) return;
+            var shipTransform = targetShip.transform.Find("Ship").transform;
+
+            foreach (var hit in hits)
+            {
+                if (hit.transform == shipTransform)
+                {
+                    impactLocation = hit.point;
+                    break;
+                }
+            }
+
+            if (impactLocation.x == -1) return;
+        }
+        else
+        {
+            impactLocation = _target;
+        }
 
         var lineRender = laser.gameObject.GetComponent<LineRenderer>();
         lineRender.SetPositions(new Vector3[] { emissionLocation, impactLocation });

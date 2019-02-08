@@ -1,0 +1,221 @@
+fileFormatVersion: 2
+guid: f6ba9d971554af042ba3cfe9e643c0a9
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Center
+    100002: Dome
+    100004: //RootNode
+    100006: Center_001
+    100008: Cylinder
+    100010: Cube
+    100012: Cylinder_001
+    100014: Cube_001
+    100016: DockAttatcher
+    100018: DockingPads
+    100020: EndCap
+    100022: MiniCenter
+    100024: ObservationWing
+    100026: Shield
+    100028: Torus
+    100030: TorusSupport
+    400000: Center
+    400002: Dome
+    400004: //RootNode
+    400006: Center_001
+    400008: Cylinder
+    400010: Cube
+    400012: Cylinder_001
+    400014: Cube_001
+    400016: DockAttatcher
+    400018: DockingPads
+    400020: EndCap
+    400022: MiniCenter
+    400024: ObservationWing
+    400026: Shield
+    400028: Torus
+    400030: TorusSupport
+    2100000: unnamed
+    2100002: Material_001
+    2100004: ObservationWingMaterial
+    2100006: TorusSupportMaterial
+    2100008: TorusMateria
+    2100010: DockAttackerMaterial
+    2100012: EndCapMaterial
+    2100014: Docking_Pads_Material
+    2100016: Center_Material
+    2100018: DomeMaterial
+    2300000: Center
+    2300002: Dome
+    2300004: Center_001
+    2300006: Cylinder
+    2300008: Cube
+    2300010: Cylinder_001
+    2300012: Cube_001
+    2300014: DockAttatcher
+    2300016: DockingPads
+    2300018: EndCap
+    2300020: MiniCenter
+    2300022: ObservationWing
+    2300024: Shield
+    2300026: Torus
+    2300028: TorusSupport
+    3300000: Center
+    3300002: Dome
+    3300004: Center_001
+    3300006: Cylinder
+    3300008: Cube
+    3300010: Cylinder_001
+    3300012: Cube_001
+    3300014: DockAttatcher
+    3300016: DockingPads
+    3300018: EndCap
+    3300020: MiniCenter
+    3300022: ObservationWing
+    3300024: Shield
+    3300026: Torus
+    3300028: TorusSupport
+    4300000: Center
+    4300002: Dome
+    4300004: Cylinder
+    4300006: Center_001
+    4300008: Cylinder_001
+    4300010: Cube
+    4300012: Cube_001
+    4300014: ObservationWing
+    4300016: TorusSupport
+    4300018: Torus
+    4300020: DockAttatcher
+    4300022: EndCap
+    4300024: DockingPads
+    4300026: Shield
+    4300028: MiniCenter
+    7400000: Default Take
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Center_Material
+    second: {fileID: 2100000, guid: c429a9ab9c1608340a9e8a31a59d48fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DockAttackerMaterial
+    second: {fileID: 2100000, guid: dc221226ea97f33478e1d4ee5c96ab7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Docking_Pads_Material
+    second: {fileID: 2100000, guid: 46ba9fc1dc25b09498037b64951b8d73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DomeMaterial
+    second: {fileID: 2100000, guid: 8f4eac15c64c9e8409528c8d8c7876e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EndCapMaterial
+    second: {fileID: 2100000, guid: 3d93c3a972cbd9f48ace41151da449fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ObservationWingMaterial
+    second: {fileID: 2100000, guid: aa8fc98d5ee615f42b4b36084e6ba9c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TorusMateria
+    second: {fileID: 2100000, guid: 2af84157e6c751a4e8ebade4ffa3fca4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TorusSupportMaterial
+    second: {fileID: 2100000, guid: d804b0ed470f4684f846c6dd5bb9cf75, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

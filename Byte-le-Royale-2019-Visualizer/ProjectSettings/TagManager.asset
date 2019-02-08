@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - MyCurrentCamera
+  - Ship
   layers:
   - Default
   - TransparentFX

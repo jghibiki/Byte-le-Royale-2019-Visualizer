@@ -14,7 +14,7 @@ public class OrthoCameraController : MonoBehaviour
     private float X;
     private float Y;
 
-    public float scrollSpeed = 10f;
+    public float scrollSpeed = 8f;
 
     private float maxCameraHeight;
     private Vector3 defaultCamPos;
@@ -84,7 +84,14 @@ public class OrthoCameraController : MonoBehaviour
         }
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        transform.Translate(Vector3.up * scroll * scrollSpeed * 100f * Time.deltaTime, Space.World);
+        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)){
+            transform.Translate(Vector3.up * scroll * scrollSpeed *3f * 100f * Time.deltaTime, Space.World);
+        }
+        else
+        {
+            transform.Translate(Vector3.up * scroll * scrollSpeed * 100f * Time.deltaTime, Space.World);
+        }
+        
         var verticalPos = transform.position;
         verticalPos.y = Mathf.Clamp(verticalPos.y, 0, maxCameraHeight);
         transform.position = verticalPos;
@@ -108,7 +115,7 @@ public class OrthoCameraController : MonoBehaviour
     void UpdateCameraDrag()
     {
         var speed = 1f;
-        if (Input.GetMouseButton(2))
+        if (Input.GetMouseButton(1))
         {
             transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * speed, -Input.GetAxis("Mouse X") * speed, 0));
             X = transform.rotation.eulerAngles.x;

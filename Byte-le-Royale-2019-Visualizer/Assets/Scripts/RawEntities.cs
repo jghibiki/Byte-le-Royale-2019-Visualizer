@@ -76,9 +76,13 @@ public class RawEntities
     {
         public string id;
 
+        public int object_type;
+
         public bool is_npc;
         public string team_name;
         public List<int> color;
+
+        public int respawn_counter;
 
         public int max_hull;
         public int current_hull;
@@ -113,7 +117,7 @@ public class RawEntities
         public int credits;
 
         public GameObject gameObject;
-      
+
     }
 
     public class Manifest
@@ -128,11 +132,27 @@ public class RawEntities
         }
     }
 
+    public class IllegalSalvage
+    {
+        public string id;
+        public int[] position;
+
+    }
+
     public class AttackEvent
     {
         public int type;
         public string attacker;
         public string target;
         public int damage;
+        public int[] target_position;
+    }
+
+
+    public class IllegalSalvageSpawnedEvent
+    {
+        public int type;
+        public string id;
+        public int[] position;
     }
 }

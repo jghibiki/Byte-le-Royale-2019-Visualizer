@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6337159473047295575}
   m_Layer: 0
   m_Name: Ship
-  m_TagString: Untagged
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5119249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 3821828112680420844}
   - {fileID: 6800174320307861857}
@@ -68,6 +68,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LaserBlast: {fileID: 5448435321604532839, guid: e0bfefd9a0640d15398e3ccfa9ac29d8,
     type: 3}
+  explosion: {fileID: 7409847107763858458, guid: c207c8e3516065e4983ce5c21de5e22e,
+    type: 3}
+  police: 0
 --- !u!1 &2052643916
 GameObject:
   m_ObjectHideFlags: 0

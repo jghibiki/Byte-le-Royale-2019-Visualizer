@@ -631,6 +631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 860886635623001034}
   - component: {fileID: 7462092914149698757}
+  - component: {fileID: 791334024422623416}
   m_Layer: 0
   m_Name: Black Market Station
   m_TagString: Untagged
@@ -673,6 +674,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &791334024422623416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2659822231773916172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a735efad9742f3742884ade24bc95477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 0
+  rotationAxis: {x: 0, y: 1, z: 0}
 --- !u!1 &2878301973466774758
 GameObject:
   m_ObjectHideFlags: 0
